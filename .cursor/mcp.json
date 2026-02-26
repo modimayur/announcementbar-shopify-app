@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "shopify-dev-mcp": {
+      "command": "npx",
+      "args": ["-y", "@shopify/dev-mcp@latest"],
+      "env": {
+        "POLARIS_UNIFIED": "true",
+        "LIQUID": "true"
+      }
+    },  
+    "MongoDB": {
+      "command": "npx",
+      "args": ["-y", "mongodb-mcp-server", "--connectionString", "mongodb+srv://modimayur123_db_user:<db_password>@cluster0.oqnce8i.mongodb.net/", "--readOnly"]
+    }
+  }
+}
+
