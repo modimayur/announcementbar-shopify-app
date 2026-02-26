@@ -5,7 +5,7 @@ This app adds an **Announcement Banner** feature: set announcement text in the S
 - **Admin**: App > Announcement — text input and Save. Data flows to MongoDB and to Shop metafield `my_app.announcement`.
 - **Storefront**: Theme app extension "Announcement Banner" (app embed). Enable it in Theme settings > App embeds. The block shows `shop.metafields.my_app.announcement` as a fixed top banner.
 
-**Requirements**: MongoDB (set `MONGODB_URI` in `.env`; see `.env.example`). Scopes include `read_metafields` and `write_metafields` (see `shopify.app.toml`).
+**Requirements**: MongoDB (set `MONGODB_URI` in `.env`; see `.env.example`). Scopes use `write_products`; Shop metafield access is included for installed apps (see `shopify.app.toml`).
 
 ---
 

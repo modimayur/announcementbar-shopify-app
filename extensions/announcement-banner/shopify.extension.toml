@@ -1,6 +1,9 @@
 api_version = "2025-01"
 
 [[extensions]]
+
+uid = "703ce8c4-c9c1-4ea4-9fe3-4b3e22b2bc67d758e5d2"
+
 type = "theme"
 name = "Announcement Banner"
 handle = "announcement-banner"
