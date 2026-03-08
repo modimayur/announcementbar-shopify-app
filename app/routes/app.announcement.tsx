@@ -64,6 +64,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     return { ok: false, error: "Could not get shop id" };
   }
 
+  let auditSaved = true;
   try {
     await insertAnnouncementHistory({
       text,
@@ -73,7 +74,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     });
   } catch (e) {
     console.error("MongoDB insert failed:", e);
-    return { ok: false, error: "Failed to save audit history" };
+    auditSaved = false;
+    // Continue to sync to Shopify; we'll warn the user about audit history
   }
 
   const setResponse = await admin.graphql(METAFIELDS_SET, {
@@ -98,7 +100,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     };
   }
 
-  return { ok: true };
+  return {
+    ok: true,
+    auditSaved,
+  };
 };
 
 export default function AnnouncementPage() {

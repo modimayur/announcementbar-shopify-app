@@ -1,13 +1,19 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, type MongoClientOptions } from "mongodb";
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017";
 const DB_NAME = "announcement_banner_app";
 
 let client: MongoClient | null = null;
 
+const clientOptions: MongoClientOptions = {
+  // Fixes ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR when connecting to Atlas from Node on Windows
+  autoSelectFamily: false,
+  serverSelectionTimeoutMS: 10000,
+};
+
 export async function getMongoClient(): Promise<MongoClient> {
   if (!client) {
-    client = new MongoClient(MONGODB_URI);
+    client = new MongoClient(MONGODB_URI, clientOptions);
     await client.connect();
   }
   return client;
